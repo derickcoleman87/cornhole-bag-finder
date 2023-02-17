@@ -33,6 +33,12 @@ label {
   font-weight: 700;
 }
 
+.or {
+  padding-right: 5px;
+  font-weight: 700;
+  background-color: lightsteelblue;
+}
+
 .search-bar {
   margin-right: 10px;
   border-radius: 5px;

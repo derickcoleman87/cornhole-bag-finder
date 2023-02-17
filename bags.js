@@ -61,11 +61,16 @@ const bag = [
   },
 ];
 
-let searchBtn = document.getElementById("search-btn");
-
-searchBtn.addEventListener("click", () => {
+//let searchBtn = document.getElementById("search-btn");
+let form = document.querySelector("form");
+function resultsByBagName(event) {
+  event.preventDefault();
+}
+function search(event) {
+  event.preventDefault();
   let slowSide = Number(document.querySelector("#slow-side").value);
   let fastSide = Number(document.querySelector("#fast-side").value);
+  let name = document.querySelector("#name").value;
   let searchResults = [];
   for (let i = 0; i < bag.length; i++) {
     if (bag[i].slowSide === slowSide && bag[i].fastSide === fastSide) {
@@ -84,7 +89,8 @@ searchBtn.addEventListener("click", () => {
         <p>Fast Side: ${searchResults[i].fastSide}</p>`;
     document.querySelector(".results-container").append(results);
   }
-});
+}
+form.addEventListener("submit", search);
 
 /* can you create a function that when user enters bag used app returns bags with matching slow side and fast side? */
 

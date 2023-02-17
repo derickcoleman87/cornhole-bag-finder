@@ -9,13 +9,16 @@
   </head>
   <body>
     <div class="header"><h1>The Bag Finder</h1></div>
-    <div class="search-container">
+    <form class="search-container">
       <label for="slow-side">Slow Side:</label>
       <input type="text" class="search-bar" id="slow-side" size="10" />
       <label for="fast-side">Fast Side:</label>
       <input type="text" class="search-bar" id="fast-side" size="10" />
+      <p class="or">Or search by name of the bag you used</p>
+      <label for="name" class="search-bar">Bag Used:</label>
+      <input type="text" class="search-bar" id="name" size="10" />
       <button id="search-btn">Search</button>
-    </div>
+    </form>
     <div class="results-container"></div>
 
     <script src="bags.js"></script>
