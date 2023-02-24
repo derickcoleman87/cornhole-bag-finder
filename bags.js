@@ -55,7 +55,7 @@ const bag = [
   },
   {
     brand: "Reynolds",
-    name: "Typhoons",
+    name: "Typhoon",
     slowSide: 5,
     fastSide: 8,
   },
@@ -63,20 +63,48 @@ const bag = [
 
 //let searchBtn = document.getElementById("search-btn");
 let form = document.querySelector("form");
-function resultsByBagName(event) {
-  event.preventDefault();
-}
+
+// function resultsByBagName(event) {
+//   event.preventDefault();
+//   let slowSide = Number(document.querySelector("#slow-side").value);
+//   let fastSide = Number(document.querySelector("#fast-side").value);
+//   let name = document.querySelector("#name").value;
+//   let searchResults = [];
+//   for (let i = 0; i < bag.length; i++) {
+//     //find bag object by name then check speeds then return bags with matching speeds
+//     if ( ) {
+//       searchResults.push(bag[i]);
+//     }
+//   }
+// }
+
 function search(event) {
   event.preventDefault();
   let slowSide = Number(document.querySelector("#slow-side").value);
   let fastSide = Number(document.querySelector("#fast-side").value);
-  let name = document.querySelector("#name").value;
+
   let searchResults = [];
   for (let i = 0; i < bag.length; i++) {
     if (bag[i].slowSide === slowSide && bag[i].fastSide === fastSide) {
       searchResults.push(bag[i]);
     }
+    let name = document.querySelector("#name").value;
+    let dataName = bag[i].name.toUpperCase();
+    let searchName = name.toUpperCase();
+
+    if (dataName.indexOf(searchName) > -1) {
+      //check if input field is empty
+      if (
+        slowSide == null ||
+        (slowSide == "" && fastSide == null) ||
+        fastSide == ""
+      )
+        // bag[i].slowSide === slowSide && bag[i].fastSide === fastSide
+        searchResults.push(bag[i]);
+      console.log(searchName.slowSide);
+    }
   }
+
   document.querySelector(".results-container").innerHTML = "";
 
   for (let i = 0; i < searchResults.length; i++) {
