@@ -1,4 +1,17 @@
-const bag = [
+// let arr = [
+//   [1, 2],
+//   [3, 4],
+//   [5, 6],
+// ];
+// function logArr() {
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j < arr[i].length; j++) {
+//       console.log(arr[i][j]);
+//     }
+//   }
+// }
+//logArr();
+const bags = [
   {
     brand: "BG Cornhole",
     name: "Viking",
@@ -49,7 +62,7 @@ const bag = [
   },
   {
     brand: "Reynolds",
-    name: "Pro-Advantage",
+    name: "Pro Advantage",
     slowSide: 4,
     fastSide: 7,
   },
@@ -70,10 +83,10 @@ let form = document.querySelector("form");
 //   let fastSide = Number(document.querySelector("#fast-side").value);
 //   let name = document.querySelector("#name").value;
 //   let searchResults = [];
-//   for (let i = 0; i < bag.length; i++) {
-//     //find bag object by name then check speeds then return bags with matching speeds
+//   for (let i = 0; i < bags.length; i++) {
+//     //find bags object by name then check speeds then return bags with matching speeds
 //     if ( ) {
-//       searchResults.push(bag[i]);
+//       searchResults.push(bags[i]);
 //     }
 //   }
 // }
@@ -84,24 +97,24 @@ function search(event) {
   let fastSide = Number(document.querySelector("#fast-side").value);
 
   let searchResults = [];
-  for (let i = 0; i < bag.length; i++) {
-    if (bag[i].slowSide === slowSide && bag[i].fastSide === fastSide) {
-      searchResults.push(bag[i]);
+  for (let i = 0; i < bags.length; i++) {
+    if (bags[i].slowSide === slowSide && bags[i].fastSide === fastSide) {
+      searchResults.push(bags[i]);
     }
     let name = document.querySelector("#name").value;
-    let dataName = bag[i].name.toUpperCase();
+    let dataName = bags[i].name.toUpperCase();
     let searchName = name.toUpperCase();
-
     if (dataName.indexOf(searchName) > -1) {
-      //check if input field is empty
-      if (
-        slowSide == null ||
-        (slowSide == "" && fastSide == null) ||
-        fastSide == ""
-      )
-        // bag[i].slowSide === slowSide && bag[i].fastSide === fastSide
-        searchResults.push(bag[i]);
-      console.log(searchName.slowSide);
+      searchResults.push(bags[i]);
+      let bagsThatMatchedSpeed = bagsThatMatchSpeed(
+        bags[i].slowSide,
+        bags[i].fastSide
+      );
+      for (let j = 0; j < bagsThatMatchedSpeed.length; j++) {
+        if (bagsThatMatchedSpeed[j].name !== bags[i].name) {
+          searchResults.push(bagsThatMatchedSpeed[j]);
+        }
+      }
     }
   }
 
@@ -118,8 +131,17 @@ function search(event) {
     document.querySelector(".results-container").append(results);
   }
 }
+function bagsThatMatchSpeed(slowSpeed, fastSpeed) {
+  let results = [];
+  for (let i = 0; i < bags.length; i++) {
+    if (bags[i].slowSide === slowSpeed && bags[i].fastSide === fastSpeed) {
+      results.push(bags[i]);
+    }
+  }
+  return results;
+}
 form.addEventListener("submit", search);
 
-/* can you create a function that when user enters bag used app returns bags with matching slow side and fast side? */
+/* can you create a function that when user enters bags used app returns bags with matching slow side and fast side? */
 
 /* make function work on enter key press */
