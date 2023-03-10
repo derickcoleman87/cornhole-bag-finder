@@ -26,7 +26,7 @@ const bags = [
   },
   {
     brand: "BG Cornhole",
-    name: "Samarai",
+    name: "Samurai",
     slowSide: 4,
     fastSide: 9,
   },
@@ -37,10 +37,46 @@ const bags = [
     fastSide: 9,
   },
   {
+    brand: "BG Cornhole",
+    name: "Warlock",
+    slowSide: 5,
+    fastSide: 7,
+  },
+  {
+    brand: "BG Cornhole",
+    name: "Assassin",
+    slowSide: 6,
+    fastSide: 9,
+  },
+  {
+    brand: "BG Cornhole",
+    name: "Mercenary",
+    slowSide: 5,
+    fastSide: 9,
+  },
+  {
+    brand: "BG Cornhole",
+    name: "Dark Slide 2.0",
+    slowSide: 9,
+    fastSide: 9,
+  },
+  {
     brand: "Lucky Bags Cornhole",
     name: "Surefire",
     slowSide: 5,
     fastSide: 8,
+  },
+  {
+    brand: "Lucky Bags Cornhole",
+    name: "Shamrocks 2.0",
+    slowSide: 4,
+    fastSide: 7,
+  },
+  {
+    brand: "Lucky Bags Cornhole",
+    name: "O'Doyles",
+    slowSide: 4,
+    fastSide: 7,
   },
   {
     brand: "Lucky Bags Cornhole",
@@ -72,24 +108,40 @@ const bags = [
     slowSide: 5,
     fastSide: 8,
   },
+  {
+    brand: "Reynolds",
+    name: "Fracture",
+    slowSide: 6,
+    fastSide: 9,
+  },
+  {
+    brand: "Reynolds",
+    name: "Pro-x",
+    slowSide: 4,
+    fastSide: 8,
+  },
+  {
+    brand: "Reynolds",
+    name: "Carpet Bag",
+    slowSide: 3,
+    fastSide: 8,
+  },
+  {
+    brand: "Reynolds",
+    name: "Cyclone",
+    slowSide: 5,
+    fastSide: 8,
+  },
+  {
+    brand: "Reynolds",
+    name: "Thunder",
+    slowSide: 5,
+    fastSide: 6,
+  },
 ];
 
 //let searchBtn = document.getElementById("search-btn");
 let form = document.querySelector("form");
-
-// function resultsByBagName(event) {
-//   event.preventDefault();
-//   let slowSide = Number(document.querySelector("#slow-side").value);
-//   let fastSide = Number(document.querySelector("#fast-side").value);
-//   let name = document.querySelector("#name").value;
-//   let searchResults = [];
-//   for (let i = 0; i < bags.length; i++) {
-//     //find bags object by name then check speeds then return bags with matching speeds
-//     if ( ) {
-//       searchResults.push(bags[i]);
-//     }
-//   }
-// }
 
 function search(event) {
   event.preventDefault();
@@ -97,27 +149,35 @@ function search(event) {
   let fastSide = Number(document.querySelector("#fast-side").value);
 
   let searchResults = [];
+
   for (let i = 0; i < bags.length; i++) {
     if (bags[i].slowSide === slowSide && bags[i].fastSide === fastSide) {
       searchResults.push(bags[i]);
+      console.log(searchResults);
     }
+
     let name = document.querySelector("#name").value;
     let dataName = bags[i].name.toUpperCase();
     let searchName = name.toUpperCase();
+
+    //here down code issue for matching results by
     if (dataName.indexOf(searchName) > -1) {
       searchResults.push(bags[i]);
       let bagsThatMatchedSpeed = bagsThatMatchSpeed(
         bags[i].slowSide,
         bags[i].fastSide
       );
+
       for (let j = 0; j < bagsThatMatchedSpeed.length; j++) {
         if (bagsThatMatchedSpeed[j].name !== bags[i].name) {
           searchResults.push(bagsThatMatchedSpeed[j]);
+          // console.log(bagsThatMatchedSpeed[j]);
         }
       }
     }
   }
 
+  // console.log(searchResults);
   document.querySelector(".results-container").innerHTML = "";
 
   for (let i = 0; i < searchResults.length; i++) {
@@ -131,6 +191,7 @@ function search(event) {
     document.querySelector(".results-container").append(results);
   }
 }
+
 function bagsThatMatchSpeed(slowSpeed, fastSpeed) {
   let results = [];
   for (let i = 0; i < bags.length; i++) {
@@ -139,9 +200,6 @@ function bagsThatMatchSpeed(slowSpeed, fastSpeed) {
     }
   }
   return results;
+  console.log(results);
 }
 form.addEventListener("submit", search);
-
-/* can you create a function that when user enters bags used app returns bags with matching slow side and fast side? */
-
-/* make function work on enter key press */
